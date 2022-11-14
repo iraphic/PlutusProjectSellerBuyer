@@ -63,14 +63,14 @@ passAddress :: Address
 passAddress = Ledger.scriptAddress passValidator
 
 data LockParams = LockParams
-    { kataRahasia :: Haskell.String
+    { passwordBenar :: Haskell.String
     , amount     :: Value
     }
     deriving stock (Haskell.Eq, Haskell.Show, Generic)
     deriving anyclass (FromJSON, ToJSON, ToSchema, ToArgument)
 
 newtype GuessParams = GuessParams
-    { kataTebakan :: Haskell.String
+    { inputanPassword :: Haskell.String
     }
     deriving stock (Haskell.Eq, Haskell.Show, Generic)
     deriving anyclass (FromJSON, ToJSON, ToSchema, ToArgument)
@@ -120,15 +120,13 @@ pass = do
 Contract endpoints are functions that use the wallet API to interact with password chain True. We can look at the end point of the contract from two different points of view.
 
 1. Contract user
-
 The contract endpoint is the visible contract interface. They provide UI (HTML form) to enter the parameters of the actions we may take as part of the contract.
 
 2. Contract writer
-
 As contract authors, we define an endpoint as a function that returns a value type 'MockWallet()'. This type indicates that the function uses the wallet API to produce and spend transaction output on the blockchain.
 
-Endpoints can have any number of parameters: 'passwordBenar' has two parameters, 'inputanPassword' has one and 'startPass' has none. For each of our endpoints
-include a call to 'mkFunction' at the end of the contract definition. This causes the Haskell compiler to generate a schema for the endpoint.
+Endpoints can have any number of parameters: 'passwordBenar' has two parameters, 'inputanPassword' has one and 'startPass' has none. 
+For each of our endpoints include a call to 'mkFunction' at the end of the contract definition. This causes the Haskell compiler to generate a schema for the endpoint.
 
 -}
 
